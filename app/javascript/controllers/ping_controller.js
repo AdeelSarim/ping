@@ -1,6 +1,6 @@
 import { Controller } from "stimulus";
 export default class extends Controller {
-  static targets = ["pingForm"]
+  static targets = ["pingForm", "latency"]
 
   pauseRequest(event) {
     event.preventDefault();
@@ -21,9 +21,15 @@ export default class extends Controller {
     this.latency = this.responseTime - this.requestTime;
 
     console.log(`${this.latency} ms`);
+    this.displayLatency()
 
     setTimeout(() => this.ping(), 1000)
   }
+
+  displayLatency() {
+    this.latencyTarget.textContent = this.latency + " ms"
+  }
+
 
   saveResponseTime() {
     this.responseTime = new Date().getTime();
