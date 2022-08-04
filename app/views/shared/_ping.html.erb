@@ -1,0 +1,5 @@
+<div data-controller="ping" >
+    <%= form_tag ping_path, method: :get, data: { action: "turbo:before-fetch-request->ping#pauseRequest turbo:submit-end->ping#measureLatency", "ping-target": "pingForm" } do %>
+    <%= button_tag "Ping" %>
+    <% end %>
+</div>
